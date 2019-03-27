@@ -1,0 +1,79 @@
+page-calendar {
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: black;
+    color: white;
+    .today {
+      line-height: 50px;
+      font-size: 14px;
+      position: absolute;
+      right: 10px;
+      top: 0;
+    }
+  }
+  .calendar {
+    height: 300px;
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      .flex-item {
+        width: calc(100vw / 7);
+        text-align: center;
+        height: calc(100vw / 7);
+        line-height: calc(100vw / 7);
+        position: relative;
+      }
+      .day-title{
+        color: lightgray;
+      }
+      .circle{
+        background-color: blue;
+        border-radius: 50%;
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        margin-top: 10%;
+        margin-left: 10%;
+      }
+      .day-text{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 10%;
+        height: 80%;
+        color: white;
+      }
+    }
+
+    .calendar-date-box{
+      display: none;
+    }
+    .show-week,.show-month{
+      display: flex;
+    }
+
+    .icon-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      .dropdown-icon,.dropup-icon{
+        font-size: 2em !important;
+        display: none;
+      }
+      .show-icon{
+        display: inline-block;
+      }
+    }
+  }
+
+}

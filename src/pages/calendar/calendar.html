@@ -1,0 +1,33 @@
+<ion-content>
+  <div>123</div>
+  <div class="header ">
+    {{today}}
+    <div class="today">今天</div>
+  </div>
+  <div class="calendar">
+    <div class="flex-container">
+      <div class="flex-item day-title">日</div>
+      <div class="flex-item day-title">一</div>
+      <div class="flex-item day-title">二</div>
+      <div class="flex-item day-title">三</div>
+      <div class="flex-item day-title">四</div>
+      <div class="flex-item day-title">五</div>
+      <div class="flex-item day-title">六</div>
+    </div>
+    <div class="flex-container calendar-date-box" [ngClass]="{'show-week': showDown===true}">
+      <div class="flex-item" *ngFor="let myday of week">
+        <div [ngClass]="{'circle': myday===day}"></div>
+        <div [ngClass]="{'day-text': myday===day}">{{myday}}</div>
+      </div>
+    </div>
+    <div class="flex-container calendar-date-box" [ngClass]="{'show-month': showUp===true}">
+      <div class="flex-item" *ngFor="let mydate of weeks">
+        {{mydate}}
+      </div>
+    </div>
+    <div class="icon-box">
+      <ion-icon name="arrow-dropdown" class="dropdown-icon" (click)="showFullDate()" [ngClass]="{'show-icon': showDown===true}"></ion-icon>
+      <ion-icon name="arrow-dropup" class="dropup-icon"(click)="showWeekDate()" [ngClass]="{'show-icon': showUp===true}"></ion-icon>
+    </div>
+  </div>
+</ion-content>
