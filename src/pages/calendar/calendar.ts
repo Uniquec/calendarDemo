@@ -7,37 +7,58 @@ import {NavController} from 'ionic-angular';
 })
 export class CalendarPage {
 
-  date = new Date();
+  date = new Date('2019/3/28');
   year = this.date.getFullYear();
   month = this.date.getMonth() + 1;
+  calendarDay = this.date.getDate();
+  week = [];
   months = [];
   today = '';
+  choosenDay = this.date.getDate();
 
   showDown = true;
   showUp = false;
+  showToday = true;
 
   constructor(public navCtrl: NavController) {
+    console.log(this.choosenDay)
     let monthText = this.month < 10 ? '0' + this.month : '' + this.month;
-    this.today = this.year + '-' + monthText + '-' + this.date.getDate();
+    let dayText = this.calendarDay < 10 ? '0' + this.calendarDay : '' + this.calendarDay;
+    this.today = this.year + '-' + monthText + '-' + dayText;
     const day = this.getFirstDayWeek();
     const endDay = this.getEndDay();
-    const weeks = this.getWeeks();
+    let weeks = 0;
     let start = 1 - day;
-    for (let i = 0; i < weeks; i++) {
+    for (let i = 0; ; i++) {
       this.months[i] = [];
       for (let j = 0; j < 7; j++) {
-        this.months[i] = start;
+        this.months[i][j] = start;
         start = start + 1;
       }
+      weeks++;
+      if(start>endDay){
+        break;
+      }
     }
-    for (let i = 0; i < weeks; i++) {
+    for (let i = 0; i<weeks; i++) {
       for (let j = 0; j < 7; j++) {
         if (this.months[i][j] <= 0 || this.months[i][j] > endDay) {
           this.months[i][j] = null;
         }
       }
     }
-    console.log(this.months)
+
+
+    let currentDay = this.date.getDay();
+    this.week[currentDay + 1] = this.calendarDay;
+    for(let i = -currentDay;i <= 0;i++){
+      if(this.calendarDay + i <= 0) continue;
+      this.week[currentDay + i] = this.calendarDay + i;
+    }
+    for(let i = 0;i <= 6 - currentDay;i++){
+      if(this.calendarDay + i > endDay) continue;
+      this.week[currentDay + i] = this.calendarDay + i;
+    }
   }
 
   /**
@@ -63,21 +84,7 @@ export class CalendarPage {
   }
 
   /**
-   * 这个月有几周
-   */
-  getWeeks() {
-    let day = this.getEndDay();
-    let count = 0;
-    while (day) {
-      day -= 7;
-      count++;
-    }
-    return count;
-  }
-
-  /**
    * 判断闰年
-   * @returns {boolean}
    */
   judge() {
     const n = this.year;
@@ -91,5 +98,13 @@ export class CalendarPage {
   showWeekDate(){
     this.showDown = true;
     this.showUp = false;
+  }
+
+  clickDay(myday){
+    this.choosenDay = myday;
+  }
+
+  backToToday(){
+    this.choosenDay = this.calendarDay;
   }
 }

@@ -32,13 +32,35 @@ page-calendar {
         color: lightgray;
       }
       .circle{
-        background-color: blue;
+        border: 1px solid blue;
         border-radius: 50%;
         position: absolute;
         width: 80%;
         height: 80%;
         margin-top: 10%;
         margin-left: 10%;
+      }
+      .full-circle{
+        background-color: blue;
+        border: 1px solid blue;
+        border-radius: 50%;
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        margin-top: 10%;
+        margin-left: 10%;
+      }
+      .blue-day-text{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 10%;
+        height: 80%;
+        color: blue;
       }
       .day-text{
         position: absolute;
@@ -50,6 +72,9 @@ page-calendar {
         margin-left: 10%;
         margin-top: 10%;
         height: 80%;
+        color: white;
+      }
+      .choose-day-text{
         color: white;
       }
     }

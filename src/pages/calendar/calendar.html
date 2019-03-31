@@ -1,8 +1,7 @@
 <ion-content>
-  <div>123</div>
   <div class="header ">
     {{today}}
-    <div class="today">今天</div>
+    <div class="today" (click)="backToToday()">今天</div>
   </div>
   <div class="calendar">
     <div class="flex-container">
@@ -14,20 +13,25 @@
       <div class="flex-item day-title">五</div>
       <div class="flex-item day-title">六</div>
     </div>
-    <div class="flex-container calendar-date-box" [ngClass]="{'show-week': showDown===true}">
+    <div class="flex-container calendar-date-box" [ngClass]="{'show-week': showDown === true}">
       <div class="flex-item" *ngFor="let myday of week">
-        <div [ngClass]="{'circle': myday===day}"></div>
-        <div [ngClass]="{'day-text': myday===day}">{{myday}}</div>
+        <div [ngClass]="{'full-circle': myday === choosenDay}"></div>
+        <div [ngClass]="{'circle': myday === calendarDay}"></div>
+        <div [ngClass]="{'blue-day-text': myday === calendarDay,'day-text': myday === choosenDay}" (click)="clickDay(myday)">{{myday}}</div>
       </div>
     </div>
-    <div class="flex-container calendar-date-box" [ngClass]="{'show-month': showUp===true}">
-      <div class="flex-item" *ngFor="let mydate of weeks">
-        {{mydate}}
+    <div *ngFor="let month of months">
+      <div class="flex-container calendar-date-box" [ngClass]="{'show-month': showUp === true}">
+        <div class="flex-item" *ngFor="let mydate of month">
+          <div [ngClass]="{'full-circle': mydate === choosenDay}"></div>
+          <div [ngClass]="{'circle': mydate === calendarDay}"></div>
+          <div [ngClass]="{'blue-day-text': mydate === calendarDay,'day-text': mydate === choosenDay}" (click)="clickDay(mydate)">{{mydate}}</div>
+        </div>
       </div>
     </div>
     <div class="icon-box">
-      <ion-icon name="arrow-dropdown" class="dropdown-icon" (click)="showFullDate()" [ngClass]="{'show-icon': showDown===true}"></ion-icon>
-      <ion-icon name="arrow-dropup" class="dropup-icon"(click)="showWeekDate()" [ngClass]="{'show-icon': showUp===true}"></ion-icon>
+      <ion-icon name="arrow-dropdown" class="dropdown-icon" (click)="showFullDate()" [ngClass]="{'show-icon': showDown === true}"></ion-icon>
+      <ion-icon name="arrow-dropup" class="dropup-icon"(click)="showWeekDate()" [ngClass]="{'show-icon': showUp === true}"></ion-icon>
     </div>
   </div>
 </ion-content>
